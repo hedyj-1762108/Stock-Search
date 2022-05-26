@@ -1,0 +1,34 @@
+<div class="content" role="main">
+    <h2>STOCK SEARCH</h2> 
+    <div class="container round searchBarContainer border border-3 w-100">
+
+        <input [formControl]="myControl" class="form-control" matInput type="text" [matAutocomplete]="auto" placeholder="Enter Stock Ticker Symbol" [(ngModel)]="input_ticker" (keyup.enter)="handleSubmit()" />  
+        <mat-autocomplete #auto="matAutocomplete" >
+          <mat-option *ngIf="isLoading" class="is-loading"><mat-progress-spinner
+            class="example-margin"
+            [color]="color"
+            [mode]="mode"
+            [value]="value"
+            [diameter]="20">
+        </mat-progress-spinner></mat-option>
+          <ng-container *ngIf="!isLoading">
+          <mat-option *ngFor="let option of filteredOptions" [value]="option.symbol" >
+            <span (click)="handleSubmitAuto(option.symbol)"><b>{{option.symbol}}</b> {{option.description}}</span>
+          </mat-option>
+          </ng-container>
+         </mat-autocomplete>
+      <div class="input-group-append">
+          <button id="searchButton" class='btn w-5' type="button" (click)="handleSubmit()">
+              <i class="fa fa-search "></i>
+          </button>
+      </div>
+      <div class="input-group-append">
+        <button id="searchButton" class='btn w-5 rightround' type="button" (click)="handleClear()">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+    
+  </div>
+</div>
+
+<app-basic-info [ticker]='ticker'[ngClass] = "{'display':ticker != 'home', 'none':ticker == 'home'}"></app-basic-info>

@@ -1,0 +1,128 @@
+<div class="content" role="main">
+    <!-- Alert -->
+    <div *ngFor="let ticker of Bought_ALERTS">
+      <ngb-alert class="text-center" type="success" (closed)="toggle_bought(ticker)">{{ticker}} bought successfully.</ngb-alert>
+    </div>
+    <div *ngFor="let ticker of Sell_ALERTS">
+      <ngb-alert class="text-center" type="danger" (closed)="toggle_sell(ticker)">{{ticker}} sold successfully.</ngb-alert>
+    </div>
+
+
+    <h1>My Portfolio</h1>
+    <h2>Money in Wallet: ${{money}}</h2>
+
+    <div *ngIf="all_data.length<=0">
+      <ngb-alert [dismissible]="false" class="text-center" type="warning" >Currently you don't have any stock.</ngb-alert>
+    </div>
+
+    <div class="container d-block">
+        <div class="card " *ngFor="let data of all_data">
+            <div class="card-header d-flex">
+                <h2 class="title">{{data.ticker}}</h2>
+                <h3 class="title company_name">{{data.name}}</h3>
+            </div>
+
+            <div class="card-body">
+                
+                <div class="row justify-content-between">
+                    <div class="col-sm">
+                        <div class='row'>
+                        <p class="col-6">Quantity:</p>
+                        <p class="text-right col-6">{{data.quantity}}</p>
+                        </div>
+                        <div class='row'>
+                            <p class="col-6">Avg.Cost/Share:</p>
+                            <p class="text-right col-6">{{data.aveCost}}</p>
+                        </div>
+                        <div class='row'>
+                            <p class="col-6">Total Cost:</p>
+                            <p class="text-right col-6">{{data.totalCost}}</p>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class='row'>
+                        <p class="col-6">Change:</p>
+                        <div class="d-flex flex-row-reverse col-6" [ngClass] = "{'up': data.upOrDown == 1, 'down':data.upOrDown == 0}">
+                            <p class="">{{data.change}}</p>
+                            <i class="bi bi-caret-up-fill fa-1x " [ngClass] = "{'display': data.upOrDown == 1, 'none':data.upOrDown == 0 || 3}"></i>
+                            <i class="bi bi-caret-down-fill fa-1x" [ngClass] = "{'none': data.upOrDown == 1 || 3, 'display':data.upOrDown == 0}"></i>
+                            <!-- <p class="">{{data.change}}</p> -->
+                        </div>
+                        </div>
+                        <div class='row'>
+                            <p class="col-6">Current Price:</p>
+                            <p class="text-right col-6" [ngClass] = "{'up': data.upOrDown == 1, 'down':data.upOrDown == 0}">{{data.curPrice}}</p>
+                        </div>
+                        <div class='row'>
+                            <p class="col-6">Market Value:</p>
+                            <p class="text-right col-6" [ngClass] = "{'up': data.upOrDown == 1, 'down':data.upOrDown == 0}">{{data.marketVal}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-footer text-right">
+                <div>
+                <button type="button" class="btn btn-primary" (click)="openBackDropCustomClass(content)">Buy</button>
+                <!-- modal for buy -->
+                <ng-template #content let-modal>
+                    <div class="modal-header">
+                      <div class="d-block">
+                        <h3 class="modal-title">{{data.ticker}}</h3>
+                      </div>
+                      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Current Price: {{data.curPrice}}</p>
+                      <p>Money in Wallet: ${{money}}</p>
+                      <div class="d-flex">
+                        <p>Quantity&nbsp;</p>
+                        <div class="form-outline">
+                          <input type="number" id="typeNumber" class="form-control" value='1' min="1" max="999" [(ngModel)]="input_q" (ngModelChange)="checkMoneyNeeded(data.curPrice)"/>
+                        </div>
+                    </div>
+                      <p class="exceedWarning" [ngClass] = "{'displayBlock':exceed == true, 'none':exceed == false}">Not enough money in wallet!</p>
+                    </div>
+                    <div class="modal-footer">
+                      <div class="mr-auto">
+                      Total: {{moneyNeeded}}
+                      </div>
+                      <button type="button" class="btn btn-success" (click)="modal.dismiss('Cross click')" (click)="boughtIt(data.ticker)" [ngClass] = "{'disabled':exceed == true}">Buy</button>
+                    </div>
+                  </ng-template>
+                <button type="button" class="btn btn-danger" (click)="openBackDropCustomClass(sell)">Sell</button>
+                <!-- modal for sell -->
+        <ng-template #sell let-modal>
+            <div class="modal-header">
+              <div class="d-block">
+                <h3 class="modal-title">{{data.ticker}}</h3>
+              </div>
+              <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+            </div>
+  
+            <div class="modal-body">
+              <p>Current Price: {{data.curPrice}}</p>
+              <p>Money in Wallet: ${{money}}</p>
+              <div class="d-flex">
+                <p>Quantity&nbsp;</p>
+                <div class="form-outline">
+                  <input type="number" id="typeNumber" class="form-control" value='1' min="1" max="999" [(ngModel)]="input_q_sell" (ngModelChange)="sellToMuchorNot(data.curPrice, data.ticker)"/>
+                </div>
+            </div>
+              <p class="exceedWarning" [ngClass] = "{'displayBlock':sellToMuch == true, 'none':sellToMuch == false}">You cannot sell the stocks that you don't have!</p>
+            </div>
+  
+            <div class="modal-footer">
+              <div class="mr-auto">
+                Total: {{moneyback}}
+              </div>
+              <button type="button" class="btn btn-success" (click)="modal.dismiss('Cross click')" (click)="sellIt(data.ticker)" [ngClass] = "{'disabled':sellToMuch == true}">Sell</button>
+            </div>
+        </ng-template>
+                </div>
+            </div>
+
+          </div>
+    </div>
+
+</div>

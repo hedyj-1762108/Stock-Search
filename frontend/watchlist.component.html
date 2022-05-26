@@ -1,0 +1,35 @@
+<div class="content" role="main">
+    <h1 >My Watchlist</h1> 
+
+    <div *ngIf="all_data.length<=0">
+        <ngb-alert [dismissible]="false" class="text-center" type="warning" >Currently you don't have any stock in your watchlist.</ngb-alert>
+      </div>
+
+    <div class="container d-block">
+        <div class="card " *ngFor="let data of all_data">
+            <div class="card-body">
+                <button type="button" class="close"  aria-label="Close" (click)="remove(data.ticker)">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="d-flex flex-row justify-content-between">
+                    <div class="col flex-column">
+                        <h2 routerLink="/search/{{data.ticker}}">{{data.ticker}}</h2>
+                        <h3>{{data.name}}</h3>
+                    </div>
+                    <div class="text-right col flex-column" [ngClass] = "{'up':data.upOrDown == 1, 'down':data.upOrDown == 2}">
+                        <h2>{{data.c}}</h2>
+                        <div class="d-inline-flex">
+                            <i class="bi bi-caret-up-fill fa-2x" [ngClass] = "{'display':data.upOrDown == 1, 'none':data.upOrDown == 2}"></i>
+                            <i class="bi bi-caret-down-fill fa-2x" [ngClass] = "{'none':data.upOrDown == 1, 'display':data.upOrDown == 2}"></i>
+                            <h3>{{data.d}}</h3>
+                            <h3>(</h3>
+                            <h3>{{data.dp}}</h3>
+                            <h3>%)</h3>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+          </div>
+    </div>
+</div>

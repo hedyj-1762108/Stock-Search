@@ -1,0 +1,10 @@
+<div *ngIf="vbp" class="w-100"> 
+<highcharts-chart
+  class = "stockChart"
+  [Highcharts] = "stock_chart" 
+  [options] = "stock_option" 
+  [(update)]="updateFlag"
+  [constructorType]="chartConstructor"
+             >
+</highcharts-chart>
+</div>

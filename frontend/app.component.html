@@ -1,0 +1,44 @@
+<div id="page-container">
+  <div id="content-wrap">
+<!-- Navbar -->
+  <nav class="navbar navbar-expand-sm navbar-custom fixed-top">
+      <a class="navbar-brand" href="#">
+          <!-- <img src="bootstrap-logo.svg" alt="Bootstrap" width="30" height="24" class="d-inline-block align-top"> -->
+          <span class="hidden text-light">Stock Search</span>
+        </a>
+      <button 
+        class="navbar-toggler custom-toggler" 
+        type="button" 
+        (click)="isMenuCollapsed = !isMenuCollapsed"
+        data-bs-toggle="collapse" 
+        data-bs-target="#toggleMobileMenu" 
+        aria-controls="toggleMobileMenu" 
+        aria-expanded="false" 
+        aria-label="Toggle navigation"
+      >
+      <span class="navbar-toggler-icon"></span>
+      </button>
+      <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse" id="toggleMobileMenu" >
+      
+          <ul class="navbar-nav ms-auto text-end">
+              <li>
+                  <a class="nav-link text-light focus_border" routerLink={{ticker_link}} (click)="isMenuCollapsed = true">Search</a>
+              </li>
+              <li>
+                <a class="nav-link text-light focus_border" routerLink="/watchlist" (click)="isMenuCollapsed = true">Watchlist</a>
+              </li>
+              <li>
+                <a class="nav-link text-light focus_border" routerLink="/portfolio" (click)="isMenuCollapsed = true">Portfolio</a>
+              </li>
+          </ul>
+      </div>
+  </nav>
+
+  <router-outlet></router-outlet>
+
+  </div>
+
+<footer class="footer-copyright text-center py-3 " >Powered by 
+    <a href="https://finnhub.io">Finnhub.io</a>
+</footer>
+</div>

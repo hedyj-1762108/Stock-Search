@@ -1,0 +1,49 @@
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+.content {
+    display: flex;
+    margin: 82px auto 32px;
+    padding: 0 16px;
+    max-width: 960px;
+    flex-direction: column;
+    align-items: left;
+}
+
+h1{
+    font-size: 35px;
+}
+
+h2{
+    font-size: 30px;
+    margin-bottom: 0px;
+}
+
+h3{
+    margin-bottom: 0px;
+}
+
+.card{
+    margin-top: 10px;
+    width: 100%;
+}
+
+.close{
+    margin: 0px;
+}
+
+.up{
+    color: green;
+}
+  
+.down{
+    color: red;
+}
+
+.display{
+    display: flex;
+    
+  }
+  
+.none{
+    display: none;
+}

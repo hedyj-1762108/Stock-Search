@@ -1,0 +1,249 @@
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+
+.logo{
+  height: 90px;
+  width: 90px;
+}
+
+
+
+
+/* result area */
+@media screen and (max-width: 575px) {
+  .logo{
+    height: 45px;
+    width: 45px;
+  }
+}
+.flex-parent{
+  flex-wrap: wrap;
+}
+
+h2{
+  font-size: 30px;
+}
+
+h3{
+  font-size: 25px;
+}
+
+.name{
+  color: rgb(92, 88, 88);
+}
+
+.time{
+  color: rgb(92, 88, 88);
+}
+
+p{
+  font-size: 15px;
+}
+
+h2, h3, p, .btn{
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+
+.up{
+  color: green;
+}
+
+.down{
+  color: red;
+}
+
+.display{
+  display: flex;
+  
+}
+
+.none{
+  display: none;
+}
+
+.notice{
+  margin-top: 15px;
+}
+
+.priceInfo{
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.aboutTitle{
+  margin-left: 60px;
+  margin-top: 20px;
+}
+
+.companyInfo{
+  margin-top: 20px;
+}
+
+.news_container{
+  margin-top: 20px;
+}
+
+.eachnews_containter{
+  width: 50%;
+}
+
+.news_img{
+  height: 100px;
+  width: auto;
+}
+
+@media screen and (max-width: 575px) {
+  /* .news_img_container{
+    height: 195px;
+    width: 300px;
+    /* margin-left: 5px; 
+  } */
+
+  .news_img{
+    height: 195px;
+    width: 295px;
+    margin-left: 10px;
+  }
+  .eachnews_containter{
+    width: 100%;
+  }
+}
+
+.newsDate{
+  color: grey;
+}
+
+.detailInstru{
+  color: grey;
+  font-size: 15px;
+}
+
+.shareBox{
+  margin-top: 20px;
+  margin-left: 30px;
+  margin-bottom: 15px;
+  border: 1px solid rgb(201, 198, 198);
+  border-radius: 5px;
+  width: 430px;
+  height: 150px;
+  
+}
+
+@media screen and (max-width: 575px) {
+  .shareBox{
+    width: 350px;
+  }
+}
+
+.shareTitle{
+  margin-left: 30px;
+  margin-top: 30px;
+}
+
+.fa-brands{
+  margin-left: 30px;
+  font-size: 30px;
+  margin-top: 30px;
+}
+
+.fa-twitter{
+  color: rgb(29 161 242);
+}
+
+.fa-facebook-square{
+  color: blue;
+}
+
+highcharts-chart{
+  margin-top: 8px;
+}
+
+.stockChart{
+  height: 600px;
+  max-width: 1100px; 
+  display: block;
+  min-width: 300px;
+  margin-bottom: 15px;
+}
+
+.trend_chart{
+  max-width: 450px; 
+  height: 325px; 
+  display: block;
+  min-width: 300px;
+  margin-bottom: 20px;
+}
+
+table{
+  background-color: white;
+  width: 400px;
+}
+
+.sentiment_table{
+  margin-top: 10px;
+}
+
+.sentiment_title{
+  margin-top: 8px;
+}
+
+td{
+  text-align: center;
+}
+
+.empty{
+  height: 60px;
+}
+
+/* toggle */
+.bi-star-fill{
+  color: rgb(231, 212, 36);
+}
+
+/* button */
+.btn-danger{
+  margin-left: 10px;
+}
+
+input[type=number]::-webkit-inner-spin-button {
+  opacity: 1
+}
+
+#typeNumber{
+  width: 60px;
+}
+
+.exceedWarning{
+  font-size: 15px;
+  margin-top: 5px;
+  color: red;
+}
+
+.displayBlock{
+  display: block;
+}
+
+.displayCenter{
+  display: block;
+  text-align: center;
+}
+
+.flex-column{
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.spinner{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.redones{
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}

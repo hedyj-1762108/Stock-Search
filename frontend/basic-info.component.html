@@ -1,0 +1,280 @@
+<div class="spinner" *ngIf="foundAPI<8 && !notFound && !empty"><mat-spinner></mat-spinner></div>
+<div class="container justify-content-center flex-parent" *ngIf="notFound">
+  <ngb-alert [dismissible]="false" class="text-center redones" type="danger" >No data found. Please enter a valid ticker.</ngb-alert>
+</div>
+
+<div class="container justify-content-center flex-parent" *ngIf="empty">
+  <ngb-alert [dismissible]="true" class="text-center redones" type="danger" >Please enter a valid ticker.</ngb-alert>
+</div>
+
+
+<div *ngIf="foundAPI>=8">
+<!-- sersch result -->
+<div class="container justify-content-center flex-parent" >
+  <!-- alert -->
+  <div *ngFor="let ticker of Bought_ALERTS">
+    <ngb-alert class="text-center" type="success" (closed)="close(ticker)">{{ticker}} bought successfully.</ngb-alert>
+  </div>
+  <div *ngFor="let ticker of Sell_ALERTS">
+    <ngb-alert class="text-center" type="danger" (closed)="close_sell_alert(ticker)">{{ticker}} sold successfully.</ngb-alert>
+  </div>
+  <div *ngFor="let ticker of Collect_ALERTS">
+    <ngb-alert class="text-center" type="success" (closed)="toggle_collect(ticker)">{{ticker}} added to Watchlist.</ngb-alert>
+  </div>
+  <div *ngFor="let ticker of disCollect_ALERTS">
+    <ngb-alert class="text-center" type="danger" (closed)="toggle_discollect(ticker)">{{ticker}} removed from Watchlist.</ngb-alert>
+  </div>
+
+
+    <div class="d-flex flex-row justify-content-between">
+      <div class="col flex-column" *ngFor="let post of posts">
+        <div class="d-inline-flex">
+          <h2 >{{post.ticker}}</h2>
+          <i class="bi  fa-2x" (click)="starClickEvent()" [ngClass]="star_status ? 'bi-star-fill' : 'bi-star'"></i>
+        </div>
+        <h3 class="name">{{post.name}}</h3>
+        <p class="">{{post.exchange}}</p>
+        <div class="d-flex">
+        <button type="button" class="btn btn-success" (click)="openBackDropCustomClass(content)">Buy</button>
+        <button type="button" class="btn btn-danger" (click)="openBackDropCustomClass(sell)" [ngClass] = "buy_for_sell_button ? 'display' : 'none'" >Sell</button>
+        </div>
+        <!--  modal for buy --> 
+        <ng-template #content let-modal>
+          <div class="modal-header">
+            <div class="d-block">
+              <h3 class="modal-title">{{post.ticker}}</h3>
+            </div>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+          </div>
+          <div class="modal-body">
+            <p>Current Price: {{closePrice}}</p>
+            <p>Money in Wallet: ${{money}}</p>
+            <div class="d-flex">
+              <p>Quantity&nbsp;</p>
+              <div class="form-outline">
+                <input type="number" id="typeNumber" class="form-control" value='1' min="1" max="999" [(ngModel)]="input_q" (ngModelChange)="checkMoneyNeeded()"/>
+              </div>
+          </div>
+            <p class="exceedWarning" [ngClass] = "{'displayBlock':exceed == true, 'none':exceed == false}">Not enough money in wallet!</p>
+          </div>
+          <div class="modal-footer">
+            <div class="mr-auto">
+            Total: {{moneyNeeded}}
+            </div>
+            <button type="button" class="btn btn-success" (click)="modal.dismiss('Cross click')" (click)="boughtIt()" [ngClass] = "{'disabled':exceed == true}">Buy</button>
+          </div>
+        </ng-template>
+        <!-- modal for sell -->
+        <ng-template #sell let-modal>
+          <div class="modal-header">
+            <div class="d-block">
+              <h3 class="modal-title">{{post.ticker}}</h3>
+            </div>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+          </div>
+
+          <div class="modal-body">
+            <p>Current Price: {{closePrice}}</p>
+            <p>Money in Wallet: ${{money}}</p>
+            <div class="d-flex">
+              <p>Quantity&nbsp;</p>
+              <div class="form-outline">
+                <input type="number" id="typeNumber" class="form-control" value='1' min="1" max="999" [(ngModel)]="input_q_sell" (ngModelChange)="sellToMuchorNot()"/>
+              </div>
+          </div>
+            <p class="exceedWarning" [ngClass] = "{'displayBlock':sellToMuch == true, 'none':sellToMuch == false}">You cannot sell the stocks that you don't have!</p>
+          </div>
+
+          <div class="modal-footer">
+            <div class="mr-auto">
+              Total: {{moneyback}}
+            </div>
+            <button type="button" class="btn btn-success" (click)="modal.dismiss('Cross click')" (click)="sellIt()" [ngClass] = "{'disabled':sellToMuch == true}">Sell</button>
+          </div>
+        </ng-template>
+      </div>
+      <div class="col-2 flex-column text-center" *ngFor="let post of posts">
+        <img class="logo" src={{post.logo}} alt="logo" />
+      </div>
+      <div class="col flex-column text-right" [ngClass] = "{'up':upOrDown == 1, 'down':upOrDown == 2}" style="margin-left: 0px;">
+        <h2>{{closePrice}}</h2>
+        <div class="d-inline-flex">
+        <i class="bi bi-caret-up-fill fa-2x" [ngClass] = "{'display':upOrDown == 1, 'none':upOrDown == 2}"></i>
+        <i class="bi bi-caret-down-fill fa-2x" [ngClass] = "{'none':upOrDown == 1, 'display':upOrDown == 2}"></i>
+        <h3>{{d}}</h3>
+        <h3>(</h3>
+        <h3>{{dp}}</h3>
+        <h3>%)</h3>
+        </div>
+        <p class="time">{{message}}</p>
+      </div>
+    </div>
+</div>
+
+<!-- open or not -->
+<div class="container-fluid justify-content-center notice">
+  <p class="up font-weight-bold justify-content-center" [ngClass] = "{'display':openOrClose == 2, 'none':openOrClose == 1}">Market is Open</p>
+  <p class="down font-weight-bold justify-content-center" [ngClass] = "{'display':openOrClose == 1, 'none':openOrClose == 2}" >Market Closed on {{t}}</p>
+
+</div>
+
+<!-- tab -->
+<div class="container justify-content-center">
+<mat-tab-group mat-stretch-tabs >
+  <mat-tab label="Summary"> 
+    <div class="container row">
+      <div class="container d-block col-sm">
+        <div class="priceInfo">
+          <div class="flex-row d-flex">
+        <p class="font-weight-bold">High Price:&nbsp;</p><p>{{highPrice}}</p>
+        </div>
+        <div class="flex-row d-flex">
+        <p class="font-weight-bold">Low Price:&nbsp;</p><p>{{lowPrice}}</p>
+        </div>
+        <div class="flex-row d-flex">
+        <p class="font-weight-bold">Open Price:&nbsp;</p><p>{{openPrice}}</p>
+        </div>
+        <div class="flex-row d-flex">
+        <p class="font-weight-bold">Prev.Close:&nbsp;</p><p>{{prevClose}}</p>
+        </div>
+      </div>
+      <div><h3 class="text-decoration-underline aboutTitle">About the company</h3></div>
+      <div>
+        <div class="companyInfo" *ngFor="let post of posts">
+          <div class="flex-row d-flex" >
+        <p class="font-weight-bold">IPO Start Date:&nbsp;</p><p>{{post.ipo}}</p>
+        </div>
+        <div class="flex-row d-flex">
+        <p class="font-weight-bold">Industry:&nbsp;</p><p>{{post.finnhubIndustry}}</p>
+        </div>
+        <div class="flex-row d-flex">
+        <p class="font-weight-bold">Webpage:&nbsp;</p><a href={{post.weburl}} target="_blank">{{post.weburl}}</a>
+        </div>
+        <div class="d-block">
+        <p class="font-weight-bold">Company peers:&nbsp;</p>
+        <div class="d-inline-flex row" *ngFor="let peer of peers">
+          <!-- <a routerLink="/search/{{peer}}">{{peer}},&nbsp;&nbsp;&nbsp;</a> -->
+          <a routerLink="/search/{{peer}}" (click)="peerTo(peer)">{{peer}},&nbsp;&nbsp;&nbsp;</a>
+        </div>
+        </div>
+      </div>
+      </div>
+    </div>
+    <div class="col-sm">
+      <highcharts-chart
+          class="trend_chart"
+          *ngIf="isHighcharts"
+          [Highcharts] = "highcharts" 
+            [options] = "options" >
+      </highcharts-chart>
+    </div>
+    </div>
+    <div class='empty'></div>
+
+  </mat-tab>
+  <mat-tab label="Top News">
+    <div class="container news_container row">
+      <div class="eachnews_containter" *ngFor="let new of news">
+        <div class="card mb-3 stretched-link" (click)="openBackDropCustomClass(content)">
+          <div class="card-body row">
+            <img class="news_img news_img_container col-sm" src={{new.image}} alt="news image">
+            <p class="card-text col-sm">{{new.headline}}</p>
+            <ng-template #content let-modal>
+              <div class="modal-header">
+                <div class="d-block">
+                  <h2 class="modal-title">{{new.source}}</h2>
+                  <p class="newsDate">{{new.datetime}}</p>
+                </div>
+                <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+              </div>
+              <div class="modal-body">
+                <h4 class="font-weight-bold">{{new.headline}}</h4>
+                <p>{{new.summary}}</p>
+                <p class="detailInstru">For more details click <a href={{new.url}} target="_blank">here</a></p>
+              </div>
+              <div class="shareBox">
+                <p class="shareTitle">Share</p>
+                <div class="d-flex">
+                  <a class="twitter-share-button"
+                  href="https://twitter.com/intent/tweet?text={{new.headline}}&url={{new.url}}" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+                  <!-- <div id="fb-root"></div> -->
+                  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v13.0" nonce="PQflNKP3"></script>
+                  <div class="fb-share-button" data-href={{new.url}} data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{new.url}}&src=sdkpreparse" class="fb-xfbml-parse-ignore"><i class="fa-brands fa-facebook-square"></i></a></div>
+                  <!-- <a class="fb-share-button" 
+                    target="_blank"><i class="fa-brands fa-facebook-square"></i></a> -->
+                </div>
+              </div>
+            </ng-template>
+            <!-- <button class="btn btn-outline-primary mb-2 me-2 stretched-link" (click)="openBackDropCustomClass(content)" "></button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Charts">
+    <ng-template matTabContent>
+    <div  class="w-100">
+    <highcharts-chart
+          [(update)] = "updateFlag"
+          class = "stockChart"
+          [Highcharts] = "stock_chart" 
+          [options] = "stock_option" >
+      </highcharts-chart>
+      </div>
+      </ng-template>
+      <!-- <app-stockchart [ticker]='ticker' ></app-stockchart> -->
+  </mat-tab>
+
+  <mat-tab label="Insights">
+    <h3 class="d-flex justify-content-center sentiment_title">Social Sentiments</h3>
+    <div class="container d-flex justify-content-center sentiment_table">
+      <table class="table text-black-50">
+        <tbody>
+          <tr class='bg-light' *ngFor="let post of posts">
+            <td class="font-weight-bold">{{post.name}}</td>
+            <td class="font-weight-bold">Reddit</td>
+            <td class="font-weight-bold">Twitter</td>
+          </tr>
+          <tr>
+            <td class="bg-light font-weight-bold">Total Mentions</td>
+            <td class="fw-normal">{{mention}}</td>
+            <td class="fw-normal">{{twitter_mention}}</td>
+          </tr>
+          <tr>
+            <td class='bg-light font-weight-bold'>Positive Mentions</td>
+            <td class="fw-normal">{{reddit_pos}}</td>
+            <td class="fw-normal">{{twitter_pos}}</td>
+          </tr>
+          <tr>
+            <td class='bg-light font-weight-bold'>Negative Mentions</td>
+            <td class="border-bottom-0 fw-normal">{{reddit_neg}}</td>
+            <td class="border-bottom-0 fw-normal">{{twitter_neg}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="container row">
+      <div class="col-sm">
+        <highcharts-chart
+          class="trend_chart"
+          *ngIf="isHighcharts"
+          [Highcharts] = "rec_chart" 
+            [options] = "rec_options">
+        </highcharts-chart>
+      </div>
+      <div class="col-sm ">
+        <highcharts-chart
+        class="trend_chart"
+          *ngIf="isHighcharts"
+          [Highcharts] = "earn_chart" 
+            [options] = "earn_options" >
+        </highcharts-chart>
+      </div>
+
+    </div>
+  </mat-tab>
+</mat-tab-group>
+</div>
+
+</div>
