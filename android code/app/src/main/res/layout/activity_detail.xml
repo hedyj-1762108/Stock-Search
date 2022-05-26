@@ -1,0 +1,870 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        tools:context=".Detail">
+
+        <TextView
+            android:id="@+id/ticker"
+            android:layout_width="127dp"
+            android:layout_height="34dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.285"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.001" />
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="145dp"
+            android:layout_height="33dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="20dp"
+            android:textAlignment="viewEnd"
+            android:textColor="@color/black"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.21"
+            app:layout_constraintStart_toEndOf="@+id/ticker"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.001" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="101dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginBottom="4dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ticker"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+            android:id="@+id/priceChange"
+            android:layout_width="137dp"
+            android:layout_height="20dp"
+            android:layout_marginBottom="4dp"
+            android:textAlignment="viewEnd"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.17"
+            app:layout_constraintStart_toStartOf="@+id/price"
+            app:layout_constraintTop_toBottomOf="@+id/price"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="23dp"
+            android:layout_height="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.588"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/price"
+            app:srcCompat="@drawable/ic_baseline_trending_up_24"
+            android:visibility="gone"
+            />
+
+        <ImageView
+            android:id="@+id/imageViewDown"
+            android:layout_width="22dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="152dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/price"
+            app:srcCompat="@drawable/ic_baseline_trending_down_24"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="70dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/ticker"
+            app:layout_constraintHorizontal_bias="0.428"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager2"
+            android:layout_width="match_parent"
+            android:layout_height="425dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name"></androidx.viewpager2.widget.ViewPager2>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="61dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.173"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewPager2"
+            app:layout_constraintVertical_bias="0.0"
+            app:tabIconTint="@color/black">
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/ic_baseline_show_chart_24" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/ic_baseline_access_time_24" />
+
+        </com.google.android.material.tabs.TabLayout>
+
+
+    <TextView
+        android:id="@+id/portfoliotitle"
+        android:layout_width="92dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:text="Portfolio"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.059"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout"
+        app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/StatsTitle"
+            android:layout_width="92dp"
+            android:layout_height="23dp"
+            android:layout_marginTop="180dp"
+            android:text="Stats"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.059"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
+
+        <TextView
+        android:id="@+id/Insights"
+        android:layout_width="92dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="452dp"
+        android:text="Insights"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
+
+        <TextView
+            android:id="@+id/NewsTitle"
+            android:layout_width="92dp"
+            android:layout_height="23dp"
+            android:layout_marginTop="20dp"
+            android:text="News"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.106"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/eps" />
+
+        <TextView
+        android:id="@+id/tableTitle"
+        android:layout_width="186dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="484dp"
+        android:text="Social Sentiments"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
+
+        <TextView
+            android:id="@+id/about"
+            android:layout_width="92dp"
+            android:layout_height="23dp"
+            android:layout_marginTop="284dp"
+            android:text="About"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.059"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
+
+        <TextView
+        android:id="@+id/op"
+        android:layout_width="67dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="216dp"
+        android:text="Open Price:"
+        android:textColor="@color/black"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.054"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
+
+    <TextView
+        android:id="@+id/opV"
+        android:layout_width="67dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="216dp"
+        android:text="$0.00"
+        android:textColor="@color/black"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.304"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
+
+    <TextView
+        android:id="@+id/hp"
+        android:layout_width="67dp"
+        android:layout_height="17dp"
+        android:layout_marginTop="216dp"
+        android:text="High Price:"
+        android:textColor="@color/black"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.56"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
+
+    <TextView
+        android:id="@+id/hpV"
+        android:layout_width="67dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="216dp"
+        android:text="$0.00"
+        android:textColor="@color/black"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.82"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
+
+    <TextView
+        android:id="@+id/Industry"
+        android:layout_width="67dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="344dp"
+        android:text="Industry"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.054"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
+
+    <TextView
+        android:id="@+id/Webpage"
+        android:layout_width="67dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="368dp"
+        android:text="Webpage"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.054"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
+
+    <TextView
+        android:id="@+id/peer"
+        android:layout_width="131dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="392dp"
+        android:text="Company Peers"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.067"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
+
+        <TextView
+            android:id="@+id/startDate2"
+            android:layout_width="80dp"
+            android:layout_height="18dp"
+            android:layout_marginTop="320dp"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.516"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
+
+        <TextView
+        android:id="@+id/ipo"
+        android:layout_width="106dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="320dp"
+        android:text="IPO Start Date"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.062"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
+
+        <TextView
+            android:id="@+id/industryValue"
+            android:layout_width="106dp"
+            android:layout_height="18dp"
+            android:layout_marginTop="344dp"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.559"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
+
+        <TextView
+        android:id="@+id/webPageValue"
+        android:layout_width="185dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="368dp"
+        android:textColor="@color/purple_700"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.753"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
+
+    <TextView
+        android:id="@+id/lp4"
+        android:layout_width="67dp"
+        android:layout_height="17dp"
+        android:layout_marginTop="244dp"
+        android:text="Low Price:"
+        android:textColor="@color/black"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.054"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
+
+    <TextView
+        android:id="@+id/lpV"
+        android:layout_width="67dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="244dp"
+        android:text="$0.00"
+        android:textColor="@color/black"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.301"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
+
+    <TextView
+        android:id="@+id/pp"
+        android:layout_width="85dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="244dp"
+        android:text="Prev. Close:"
+        android:textColor="@color/black"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.593"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
+
+    <TextView
+        android:id="@+id/ppV"
+        android:layout_width="67dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="244dp"
+        android:text="$0.00"
+        android:textColor="@color/black"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.82"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
+
+    <TextView
+        android:id="@+id/aveCost"
+        android:layout_width="119dp"
+        android:layout_height="17dp"
+        android:layout_marginTop="36dp"
+        android:text="Avg.Cost / Share:"
+        android:textColor="@color/black"
+        android:textSize="13sp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.065"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/portfoliotitle" />
+
+        <TextView
+            android:id="@+id/aveCostValue"
+            android:layout_width="49dp"
+            android:layout_height="18dp"
+            android:layout_marginTop="36dp"
+            android:text="$0.00"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.458"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/portfoliotitle" />
+
+        <TextView
+        android:id="@+id/shareNum"
+        android:layout_width="49dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="16dp"
+        android:text="0"
+        android:textColor="@color/black"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.459"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/portfoliotitle" />
+
+    <TextView
+        android:id="@+id/TotalCost"
+        android:layout_width="119dp"
+        android:layout_height="17dp"
+        android:layout_marginTop="56dp"
+        android:text="Total Cost:"
+        android:textColor="@color/black"
+        android:textSize="13sp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.065"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/portfoliotitle" />
+
+        <TextView
+            android:id="@+id/totalCostValue"
+            android:layout_width="49dp"
+            android:layout_height="18dp"
+            android:layout_marginTop="56dp"
+            android:text="$0.00"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.458"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/portfoliotitle" />
+
+        <TextView
+        android:id="@+id/Change"
+        android:layout_width="119dp"
+        android:layout_height="17dp"
+        android:layout_marginTop="76dp"
+        android:text="Change:"
+        android:textColor="@color/black"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.065"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/portfoliotitle" />
+
+        <TextView
+            android:id="@+id/changeValue"
+            android:layout_width="49dp"
+            android:layout_height="18dp"
+            android:layout_marginTop="76dp"
+            android:text="$0.00"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.458"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/portfoliotitle" />
+
+        <TextView
+        android:id="@+id/mkvalue"
+        android:layout_width="119dp"
+        android:layout_height="17dp"
+        android:layout_marginTop="96dp"
+        android:text="Market Value:"
+        android:textColor="@color/black"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.065"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/portfoliotitle" />
+
+        <TextView
+            android:id="@+id/mkvalueValue"
+            android:layout_width="49dp"
+            android:layout_height="18dp"
+            android:layout_marginTop="92dp"
+            android:text="$0.00"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.458"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/portfoliotitle" />
+
+        <TextView
+        android:id="@+id/shareOwned2"
+        android:layout_width="115dp"
+        android:layout_height="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Shares Owned:"
+        android:textColor="@color/black"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.064"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/portfoliotitle" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/trade"
+            android:layout_width="99dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="72dp"
+            android:background="@drawable/btn"
+            android:backgroundTint="@color/green"
+            android:text="TRADE"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.814"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tabLayout"
+            />
+
+        <TableLayout
+            android:id="@+id/tableLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="40dp"
+            android:layout_marginTop="24dp"
+            android:background="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.475"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Insights">
+
+            <TableRow android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/companyName"
+                    android:layout_width="25dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="2sp"
+                    android:layout_marginBottom="2sp"
+                    android:layout_weight="4"
+                    android:background="@color/grey"
+                    android:padding="10sp"
+                    android:text="APPLE Inc"
+                    android:textColor="@color/darkGreyWord"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="2sp"
+                    android:layout_marginBottom="2sp"
+                    android:layout_weight="4"
+                    android:background="@color/grey"
+                    android:padding="10sp"
+                    android:text="Reddit"
+                    android:textColor="@color/darkGreyWord"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:background="@color/grey"
+                    android:padding="10sp"
+                    android:layout_marginBottom="2sp"
+                    android:text="Twitter"
+                    android:textColor="@color/darkGreyWord"
+                    android:textSize="14sp" />
+
+            </TableRow>
+
+            <TableRow android:background="@color/white">
+
+                <TextView
+                    android:layout_width="25dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="2sp"
+                    android:layout_marginBottom="2sp"
+                    android:layout_weight="4"
+                    android:background="@color/grey"
+                    android:padding="10sp"
+                    android:text="Total Mentions"
+                    android:textColor="@color/darkGreyWord"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/redditTotal"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="2sp"
+                    android:layout_marginBottom="2sp"
+                    android:layout_weight="4"
+                    android:background="@color/lightGrey"
+                    android:padding="10sp"
+                    android:textColor="@color/darkGreyWord"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/twitterTotal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2sp"
+                    android:layout_weight="4"
+                    android:background="@color/lightGrey"
+                    android:padding="10sp"
+                    android:textColor="@color/darkGreyWord"
+                    android:textSize="14sp" />
+
+            </TableRow>
+
+            <TableRow android:background="@color/white">
+
+                <TextView
+                    android:layout_width="25dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="2sp"
+                    android:layout_marginBottom="2sp"
+                    android:layout_weight="4"
+                    android:background="@color/grey"
+                    android:padding="10sp"
+                    android:text="Positive Mentions"
+                    android:textColor="@color/darkGreyWord"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/redditPos"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="2sp"
+                    android:layout_marginBottom="2sp"
+                    android:layout_weight="4"
+                    android:background="@color/lightGrey"
+                    android:padding="10sp"
+                    android:textColor="@color/darkGreyWord"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/twitterPos"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2sp"
+                    android:layout_weight="4"
+                    android:background="@color/lightGrey"
+                    android:padding="10sp"
+                    android:textColor="@color/darkGreyWord"
+                    android:textSize="14sp" />
+            </TableRow>
+
+            <TableRow android:background="@color/white">
+
+                <TextView
+                    android:layout_width="55dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="2sp"
+                    android:layout_marginBottom="2sp"
+                    android:layout_weight="4"
+                    android:background="@color/grey"
+                    android:padding="10sp"
+                    android:text="Negative Mentions"
+                    android:textColor="@color/darkGreyWord"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/redditNeg"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="2sp"
+                    android:layout_marginBottom="2sp"
+                    android:layout_weight="4"
+                    android:background="@color/lightGrey"
+                    android:padding="10sp"
+                    android:textColor="@color/darkGreyWord"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/twitterNeg"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2sp"
+                    android:layout_weight="4"
+                    android:background="@color/lightGrey"
+                    android:padding="10sp"
+                    android:textColor="@color/darkGreyWord"
+                    android:textSize="14sp" />
+            </TableRow>
+
+        </TableLayout>
+
+        <WebView
+            android:id="@+id/recomTrend"
+            android:layout_width="match_parent"
+            android:layout_height="425dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+
+        <WebView
+            android:id="@+id/eps"
+            android:layout_width="match_parent"
+            android:layout_height="425dp"
+            android:layout_margin="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recomTrend"
+            app:layout_constraintVertical_bias="0.027" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/peers"
+            android:layout_width="225dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="392dp"
+            android:scrollbars="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.923"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="match_parent"
+            android:layout_height="325dp"
+            android:layout_margin="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/white"
+            app:cardCornerRadius="30dp"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/NewsTitle">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/firstNewsImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    app:shapeAppearanceOverlay="@style/roundedImage"
+                    android:layout_margin="0dp"
+                    android:scaleType="centerCrop"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/first_news_resource"
+                        android:layout_width="100dp"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:text="StockMarket"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/first_news_time"
+                        android:layout_width="100dp"
+                        android:layout_height="20dp"
+                        android:layout_margin="5dp"
+                        android:text="5 hours ago" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/firstHeadLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="top stock fdsfsfsf"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView"
+            android:layout_marginTop="10dp"
+            android:id="@+id/newsRecy"/>
+
+        <ProgressBar
+            android:id="@+id/processBar"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="300dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.481"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:indeterminateTint="@color/purple_500"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>

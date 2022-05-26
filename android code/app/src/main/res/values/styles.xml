@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="roundedImage" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">25dp</item>
+        <item name="color">@color/white</item>
+    </style>
+    <style name="MyRounded.MaterialComponents.MaterialAlertDialog" parent="@style/ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.App.CustomDialog.Rounded
+        </item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.CustomDialog.Rounded" parent="">
+    <item name="cornerFamily">rounded</item>
+    <item name="cornerSize">10dp</item>
+</style>
+
+    <style name="MyRounded_MaterialComponents_MaterialAlertDialog_green" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">10dp</item>
+        <item name="color">@color/green</item>
+    </style>
+
+    MyRounded_MaterialComponents_MaterialAlertDialog_green
+
+</resources>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Stocks</string>
+    <string name="datetime"></string>
+    <string name="ticker">AAPL</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
