@@ -5,6 +5,6 @@ node.js backend file: [node.js](https://github.com/hedyj-1762108/Stock-Search/bl
 <br>
 Angular frontend files: [frontend](https://github.com/hedyj-1762108/Stock-Search/tree/main/frontend).
 <br>
-Android presentation video: [video](https://github.com/hedyj-1762108/Stock-Search/blob/main/android%20presentation%20video.mp4).
+Android presentation video: [video](https://www.youtube.com/watch?v=IsAeru2Vyeg).
 <br>
 Android code files: [android](https://github.com/hedyj-1762108/Stock-Search/tree/main/android%20code).
